@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Virtual Environment
+venv/
+.venv/
+env/
+.env
+ENV/
+bin/
+include/
+share/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Project Data & Models (Exclude large raw datasets and trained models)
+data/raw/
+*.csv
+!data/processed/reviews_cleaned.csv
+!outputs/labeled_dataset.csv
+!outputs/extracted_topics.csv
+
+# HuggingFace Cache
+.cache/
+hf_cache/
+
+# Streamlit config
+.streamlit/
