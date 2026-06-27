@@ -69,7 +69,7 @@ def _retrain_lda():
     from sklearn.feature_extraction.text import CountVectorizer
     from sklearn.decomposition import LatentDirichletAllocation
 
-    st.toast("🔄 Training topic model from dataset…", icon="⏳")
+    logger.info("Training topic model from dataset...")
     df = pd.read_csv(DATA_PATH)
     text_col = "review text"
 
