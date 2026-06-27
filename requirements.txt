@@ -8,6 +8,7 @@ torch>=2.0.0
 scikit-learn>=1.2.0
 tqdm
 spacy>=3.5.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0.tar.gz
 joblib
 streamlit>=1.35.0
 plotly>=5.18.0
