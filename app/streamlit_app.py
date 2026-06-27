@@ -966,7 +966,8 @@ with tab1:
 # TAB 2 — Aggregate Insights
 # ══════════════════════════════════════════════════════════════════════════════
 with tab2:
-    df = load_dataset()
+    with st.spinner("Loading dataset…"):
+        df = load_dataset()
 
     # ── Sidebar filters ──────────────────────────────────────────────────
     with st.sidebar:

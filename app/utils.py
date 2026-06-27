@@ -108,12 +108,12 @@ def _retrain_lda():
 
 # ── Cached loaders ─────────────────────────────────────────────────────────────
 
-@st.cache_data(show_spinner="Loading dataset…")
+@st.cache_data
 def load_dataset() -> pd.DataFrame:
     return pd.read_csv(DATA_PATH)
 
 
-@st.cache_resource(show_spinner="Loading topic model…")
+@st.cache_resource
 def load_lda_artifacts():
     """
     Load (lda_model, count_vectorizer) from disk.
@@ -132,7 +132,7 @@ def load_lda_artifacts():
         return _retrain_lda()
 
 
-@st.cache_resource(show_spinner="Loading sentiment model…")
+@st.cache_resource
 def load_distilbert():
     from transformers import pipeline as hf_pipeline
     return hf_pipeline(
@@ -142,13 +142,13 @@ def load_distilbert():
     )
 
 
-@st.cache_resource(show_spinner="Loading NLP model…")
+@st.cache_resource
 def load_spacy():
     import spacy
     return spacy.load("en_core_web_sm")
 
 
-@st.cache_resource(show_spinner="Loading VADER…")
+@st.cache_resource
 def load_vader():
     import nltk
     nltk.download("vader_lexicon", quiet=True)
