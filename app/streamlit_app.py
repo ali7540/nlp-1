@@ -801,17 +801,23 @@ with tab1:
         "I ordered the chocolate bars but received something completely different. Customer service was slow and unhelpful. Very disappointed.",
     ]
 
+    # Initialise session state key once so st.text_area is the sole owner
+    if "review_input" not in st.session_state:
+        st.session_state["review_input"] = ""
+
     col_input, col_sample = st.columns([3, 1])
     with col_sample:
         st.markdown("**💡 Try a sample:**")
         for i, s in enumerate(SAMPLE_REVIEWS):
             if st.button(f"Sample {i+1}", key=f"sample_{i}", width="stretch"):
                 st.session_state["review_input"] = s
+                st.rerun()
 
     with col_input:
+        # Do NOT pass value= when key= is already bound to session_state;
+        # session_state is the single source of truth.
         review_text = st.text_area(
             "Review Text",
-            value=st.session_state.get("review_input", ""),
             height=160,
             placeholder="Paste a product review here and click Analyze…",
             key="review_input",
@@ -826,7 +832,14 @@ with tab1:
             st.warning("Please enter a review first.")
         else:
             with st.spinner("Running analysis pipeline…"):
-                results = analyse_review(text)
+                try:
+                    results = analyse_review(text)
+                except Exception as _err:
+                    st.error(
+                        f"⚠️ Analysis failed: {_err}\n\n"
+                        "Please try again or contact the project maintainer."
+                    )
+                    st.stop()
 
             # ── Sentiment Results ────────────────────────────────────────
             vader = results["vader"]
